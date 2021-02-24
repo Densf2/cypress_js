@@ -12,3 +12,6 @@ running tests in headless mode
 ```
 yarn run cypress run
 ```
+
+docker build -t cypress-custom-base .
+docker run -t cypress-custom-base:latest "./node_modules/cypress/bin/cypress run --browser chrome --headless"
