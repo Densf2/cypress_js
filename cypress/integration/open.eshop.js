@@ -29,5 +29,10 @@ describe('testing eshop', () => {
         cy.get('div.clearfix.header-wrap > ul.nav-top.header__left > li:nth-child(1) > a').click();
         cy.url().should('contain', '/uk/dostavka');
     })
+
+    it('click on contacts', () => {
+        cy.get('div.clearfix.header-wrap > ul.nav-top.header__left > li:nth-child(4) > a').click();
+        cy.url().should('contain', '/uk/magaziny');
+    })
 })
 }) 
