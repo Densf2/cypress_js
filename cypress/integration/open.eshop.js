@@ -24,5 +24,10 @@ describe('testing eshop', () => {
         cy.get('input#searchFormQueryInput').click()
         cy.get('input#searchFormQueryInput').type(text.search_text_sneaker)
     })
+
+    it('clicking on the delivery link', () => {
+        cy.get('div.clearfix.header-wrap > ul.nav-top.header__left > li:nth-child(1) > a').click();
+        cy.url().should('contain', '/uk/dostavka');
+    })
 })
 }) 
