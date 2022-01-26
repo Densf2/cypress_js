@@ -1,6 +1,6 @@
 {
   "name": "cy.tests.demo",
   "devDependencies": {
-    "cypress": "^5.4.0"
+    "cypress": "9.2.0"
   }
 }
