@@ -3,11 +3,10 @@ import GeneralElements from './pages/auto.ria/general.elements';
 
 describe('Open main page and verify functionality', () => {
     const generalElements = new GeneralElements();
-    context('verificationn of FE', () => {
-        before(() => {
-            cy.visit('https://auto.ria.com/uk/');
-        })
-
+    beforeEach(() => {
+        cy.visit('https://auto.ria.com/uk/');
+    })
+    context.skip('verification of FE', () => {
         it('check text in header', () => {
             cy.get('.container-header a.button-add').should('contain', text_data.text_sell_button);
             generalElements.linkInHeader().eq(0).should('contain', 'Вживані авто');
@@ -25,6 +24,15 @@ describe('Open main page and verify functionality', () => {
             cy.get('button.button').eq(1).click();
             cy.url().should('include', 'search/?categories.main.id=1&indexName=auto,order_auto,newauto_search&year[0].gte=2015&year[0].lte=2020&size=20');
             cy.get('section.ticket-item').should('have.length', 20);
+        })
+    })
+
+    context('functionality', () => {
+        it('check redirect to details page', () => {
+            cy.get('div.mhide a').eq(3).click();
+            cy.get('div.box-panel.m-margin.mhide > a').eq(1).should('contain', ' Повернутись до пошуку');
+            cy.get('div.carousel-inner').should('be.visible');
+            cy.get('div.vin-checked').should('be.visible');
         })
     })
 })
