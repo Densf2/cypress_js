@@ -1,6 +1,13 @@
 {
     "viewportWidth": 1000,
     "viewportHeight": 890,
-    "video": false
+    "video": false,
+    "reporter": "mochawesome",
+    "reporterOptions": {
+      "reportDir": "report/mochawesome-report",
+      "owervrite": false,
+      "html": false,
+      "json": true 
+    }
   }
   
