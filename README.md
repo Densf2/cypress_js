@@ -15,7 +15,7 @@ yarn run cypress run
 list of params for cypress
 ```
 yarn run cypress run -b chrome --headed --spec cypress/integration/open_auto_ria.js
-```
+````
 
 docker build -t cypress-custom-base .
 docker run -t cypress-custom-base:latest "./node_modules/cypress/bin/cypress run --browser chrome --headless"
