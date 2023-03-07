@@ -19,8 +19,8 @@ yarn run cypress run -b chrome --headed --spec cypress/integration/open_auto_ria
 
 The 'DockerfileBuild' can be used for creating new image with tests and all dependecies.
 Below the steps for creating the image and usage: 
-docker build -t cypress-custom-base .
-docker run -t cypress-custom-base:latest "./node_modules/cypress/bin/cypress run --browser chrome --headless"
+- docker build -t cypress-custom-base .
+- docker run -t cypress-custom-base:latest "./node_modules/cypress/bin/cypress run --browser   chrome --headless"
 
 The 'Dockerfile' and 'docker-compose' files can be used for running tests in parallel with different browsers.
 Steps:
