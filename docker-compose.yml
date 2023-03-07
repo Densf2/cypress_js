@@ -1,0 +1,18 @@
+version: '3.9'
+services:
+  cypress-chrome:
+    image: "cypress/browsers"
+    container_name: cypress
+    command: npx cypress run -b chrome
+    working_dir: /app
+    volumes:
+      - ./cypress/:/app/cypress
+      - ./cypress.config.js:/app/cypress.config.js
+  cypress-ff:
+    image: "cypress/browsers"
+    container_name: cypress-f
+    command: npx cypress run -b firefox
+    working_dir: /app
+    volumes:
+      - ./cypress/:/app/cypress
+      - ./cypress.config.js:/app/cypress.config.js

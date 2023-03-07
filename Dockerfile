@@ -1,7 +1,10 @@
-FROM cypress/browsers:node12.18.3-chrome87-ff82
-# setup
+FROM cypress/browsers:node-18.14.1-chrome-110.0.5481.96-1-ff-109.0-edge-110.0.1587.41-1
 WORKDIR /app
-COPY . .
-RUN npm install --no-save
-COPY ./docker-entrypoint.sh /docker-entrypoint.sh
-ENTRYPOINT ["/docker-entrypoint.sh"]
+
+COPY package-lock.json .
+COPY package.json .
+
+ENV CI=1
+RUN npm ci
+
+RUN npx cypress verify
