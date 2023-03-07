@@ -2,6 +2,7 @@ FROM cypress/browsers:node12.18.3-chrome87-ff82
 # setup
 WORKDIR /app
 COPY . .
-RUN npm install --no-save
+ENV CI=1
+RUN npm ci
 COPY ./docker-entrypoint.sh /docker-entrypoint.sh
 ENTRYPOINT ["/docker-entrypoint.sh"]
