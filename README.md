@@ -21,3 +21,7 @@ The 'DockerfileBuild' can be used for creating new image with tests and all depe
 Below the steps for creating the image and usage: 
 docker build -t cypress-custom-base .
 docker run -t cypress-custom-base:latest "./node_modules/cypress/bin/cypress run --browser chrome --headless"
+
+The 'Dockerfile' and 'docker-compose' files can be used for running tests in parallel with different browsers.
+Steps:
+- docker-compose up
