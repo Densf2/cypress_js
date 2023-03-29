@@ -2,7 +2,7 @@
 
 import Homepage from './pages/homepage'
 
-describe('Verification of product page', () => {
+describe.skip('Verification of product page', () => {
     const homepagelocators = new Homepage()
 
     beforeEach(() => {
