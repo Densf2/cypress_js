@@ -20,9 +20,10 @@ describe('Open main page and verify functionality', () => {
 
         it('check search', () => {
             cy.get('div.form-search').should('be.visible');
+            cy.get('label[for="forYear"]').eq(0).click();
             cy.get('select#yearFrom').select('2015');
             cy.get('select#yearTo').select('2020');
-            cy.get('button.button').eq(1).click();
+            cy.get('div.footer-form button.full').click({force:true})
             cy.url().should('include', 'search/?categories.main.id=1&indexName=auto,order_auto,newauto_search&year[0].gte=2015&year[0].lte=2020&size=20');
             cy.get('section.ticket-item').should('have.length', 20);
         })
