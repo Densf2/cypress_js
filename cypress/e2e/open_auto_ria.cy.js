@@ -4,7 +4,7 @@ import GeneralElements from './pages/auto.ria/general.elements';
 describe('Open main page and verify functionality', () => {
     const generalElements = new GeneralElements();
 
-    context.skip('verification of FE', () => {
+    context('verification of FE', () => {
         beforeEach(() => {
             cy.visit('https://auto.ria.com/uk/');
         })
