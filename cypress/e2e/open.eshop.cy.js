@@ -3,18 +3,16 @@
 
 import Homepage from './pages/homepage'
 
-describe.skip('testing eshop', () => {
+describe('testing eshop', () => {
     const homepagelocators = new Homepage()
     beforeEach(() => {
-        cy.visit('https://prego.ua')
+        cy.visit('https://prego.ua/uk/new-products')
         cy.fixture('eshop_text.json').as('text')
     })
 
     it('open product page', () => {
         // example of loading the selector from the file
-        homepagelocators.searchInput().should('be.visible').click().type('черевики')
-        // 
-        // cy.get('input#searchFormQueryInput').should('be.visible').click().type('черевики')
+        homepagelocators.searchInput().click().type('черевики')
         cy.get('#search-submit').click()
         cy.url().should('include', 'https://prego.ua/uk/internal/full-search-result?query')
     })
@@ -26,8 +24,9 @@ describe.skip('testing eshop', () => {
     })
 
     it('clicking on the delivery link', () => {
-        cy.get('div.clearfix.header-wrap > ul.nav-top.header__left > li:nth-child(1) > a').click();
-        cy.url().should('contain', '/uk/dostavka');
+        cy.get('div.clearfix.header-wrap > ul.nav-top.header__left > li:nth-child(1) > a').click()
+        cy.url().should('contain', '/uk/dostavka')
+        cy.get('h2.static-page__header').should('be.visible').contains('Доставка')
     })
 })
 }) 
