@@ -13,7 +13,6 @@ describe('testing eshop', () => {
     it('open product page', () => {
         // example of loading the selector from the file
         homepagelocators.searchInput().click().type('черевики')
-        // 
         cy.get('#search-submit').click()
         cy.url().should('include', 'https://prego.ua/uk/internal/full-search-result?query')
     })
@@ -25,8 +24,9 @@ describe('testing eshop', () => {
     })
 
     it('clicking on the delivery link', () => {
-        cy.get('div.clearfix.header-wrap > ul.nav-top.header__left > li:nth-child(1) > a').click();
-        cy.url().should('contain', '/uk/dostavka');
+        cy.get('div.clearfix.header-wrap > ul.nav-top.header__left > li:nth-child(1) > a').click()
+        cy.url().should('contain', '/uk/dostavka')
+        cy.get('h2.static-page__header').should('be.visible').contains('Доставка')
     })
 })
 }) 
