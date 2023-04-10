@@ -1,3 +1,5 @@
+![repo(main) status](https://github.com/Densf2/cypress_js/workflows/main/badge.svg?branch=main)
+
 the repo contain the example of test based on cypress & JS
 
 all actions performed with yarn package manager
