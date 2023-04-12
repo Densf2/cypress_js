@@ -1,4 +1,4 @@
-![repo(main) status](https://github.com/Densf2/cypress_js/workflows/main/badge.svg?branch=main)
+[![tests on Chrome](https://github.com/Densf2/cypress_js/actions/workflows/main.yml/badge.svg?branch=main)](https://github.com/Densf2/cypress_js/actions/workflows/main.yml)
 
 the repo contain the example of test based on cypress & JS
 
