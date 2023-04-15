@@ -18,6 +18,10 @@ list of params for cypress
 ```
 yarn run cypress run -b chrome --headed --spec cypress/e2e/open_auto_ria.js
 ````
+commad for trigger in webkit
+```
+cy:run -- --browser webkit --spec cypress/e2e/open_auto_ria.cy.js
+```
 
 The 'DockerfileBuild' can be used for creating new image with tests and all dependecies.
 Below the steps for creating the image and usage: 
