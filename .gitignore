@@ -3,3 +3,4 @@ videos/
 node_modules/
 .DS_Store
 cypress/screenshots/
+report/
