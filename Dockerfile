@@ -3,7 +3,7 @@ WORKDIR /app
 
 COPY package-lock.json .
 COPY package.json .
-
+RUN npx playwright install --with-deps webkit
 ENV CI=1
 RUN npm ci
 
