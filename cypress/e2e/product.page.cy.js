@@ -6,9 +6,6 @@ describe('Verification of product page', () => {
     const homepagelocators = new Homepage()
 
     beforeEach(() => {
-        cy.visit('https://prego.ua/uk/new-products')
-        cy.fixture('eshop_text.json').as('text')
-        // old code ^^^
         cy.visit('https://www.epravda.com.ua')
         cy.fixture('epravda_text.json').as('epravdaText')
     })
