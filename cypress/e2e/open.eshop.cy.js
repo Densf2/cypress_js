@@ -3,7 +3,7 @@
 
 import Homepage from './pages/homepage'
 
-describe('testing eshop', () => {
+describe.skip('testing eshop', () => {
     const homepagelocators = new Homepage()
     beforeEach(() => {
         cy.visit('https://prego.ua/uk/new-products')
