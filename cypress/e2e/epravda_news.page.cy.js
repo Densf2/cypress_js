@@ -16,5 +16,12 @@ describe('Verification of product page', () => {
         })
     })
 
+    it('Check the main news block', () => {
+        cy.get('@epravdatext').then((epravdaText) => {
+        cy.get('img.article__img').eq(0).should('be.visible')
+        cy.get('div.block_top_stories__title').should('contain', epravdaText.main_news_title)
+        cy.get('div.block_top_stories div.article').should('have.length', 3)
+        })
+    })
      
 })
