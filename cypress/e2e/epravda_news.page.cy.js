@@ -23,5 +23,12 @@ describe('Verification of product page', () => {
         cy.get('div.block_top_stories div.article').should('have.length', 3)
         })
     })
+
+    // the test below without uploadig the text from fixtures
+    it('Check the list of news', () => {
+        cy.get('div.block__head a').eq(0).should('contain', 'Новини')
+        // verification that list of news loaded
+        cy.get('div.news div.article_news').should('have.length.greaterThan', 20)
+    })
      
 })
