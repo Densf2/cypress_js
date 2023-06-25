@@ -32,3 +32,7 @@ Below the steps for creating the image and usage:
 The 'Dockerfile' and 'docker-compose' files can be used for running tests in parallel with different browsers.
 Steps:
 - docker-compose up
+
+Added debbuger that fetch the har data from browser with network requests, video recording, and vizualization of actions.\
+Data for debugging saved in the directory: dump.\
+And can be opened in player by URL: https://cypress-debugger.dev

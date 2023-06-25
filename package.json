@@ -14,5 +14,8 @@
     "cleanup": "rm -rf report",
     "merge:report": "mochawesome-merge report/mochawesome-report/*.json > report/mochawesome-report/cypress_report.json",
     "generate:html": "marge -o report report/mochawesome-report/cypress_report.json"
+  },
+  "dependencies": {
+    "cypress-debugger": "^1.0.3"
   }
 }
