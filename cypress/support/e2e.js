@@ -1,5 +1,7 @@
 /// <reference types="cypress" />
 
+const { debuggerSupport } = require('cypress-debugger')
+debuggerSupport()
 
 Cypress.on('uncaught:exception', (err, runnable) => {
     // returning false here prevents Cypress from
