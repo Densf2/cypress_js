@@ -11,6 +11,7 @@
   },
   "scripts": {
     "cy:run": "cypress run",
+    "ria_test": "cypress run -b chrome --spec cypress/e2e/open_auto_ria.cy.js",
     "cleanup": "rm -rf report",
     "merge:report": "mochawesome-merge report/mochawesome-report/*.json > report/mochawesome-report/cypress_report.json",
     "generate:html": "marge -o report report/mochawesome-report/cypress_report.json"
