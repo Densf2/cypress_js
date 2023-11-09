@@ -11,7 +11,7 @@ jobs:
         uses: cypress-io/github-action@v5
         with:
           browser: chrome
-          run: npm run ria_test
+          spec: cypress/e2e/open_auto_ria.cy.js
 
       # - name: Trigger one file
       #   run: 
