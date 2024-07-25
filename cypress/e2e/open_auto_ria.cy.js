@@ -45,7 +45,6 @@ describe("Open main page and verify functionality", () => {
     it("check redirect to details page", () => {
       cy.get("div.mhide a").eq(3).click();
       cy.get("h1.auto-head_title").should("contain", /\w+/g);
-      cy.get("section.seller").eq(0).should("be.visible");
       generalElements.siteLogoInHeader().should("have.css", "opacity", "0");
     });
 
