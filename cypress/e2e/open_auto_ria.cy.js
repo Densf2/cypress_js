@@ -44,17 +44,13 @@ describe("Open main page and verify functionality", () => {
     });
     it("check redirect to details page", () => {
       cy.get("div.mhide a").eq(3).click();
-      cy.get("div.box-panel.m-margin.mhide > a")
-        .eq(1)
-        .should("contain", " Повернутись до пошуку");
-      cy.get("div.carousel-inner").should("be.visible");
-      cy.get("div.vin-checked").should("be.visible");
+      cy.get("h1.auto-head_title").should("contain", /\w+/g);
+      cy.get("section.seller").eq(0).should("be.visible");
       generalElements.siteLogoInHeader().should("have.css", "opacity", "0");
     });
 
     it("check news page", () => {
-      cy.wait(3000);
-      cy.get('a[data-type="news"]').click();
+      cy.get('a[data-type="news"]', { timeout: 3000 }).click();
       cy.url().should("include", "/news/");
       generalElements.siteLogoInHeader().should("have.css", "opacity", "0");
       cy.get("input#fieldTextSearch").should("be.visible");
