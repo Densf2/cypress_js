@@ -1,7 +1,7 @@
 {
   "name": "cy.tests.demo",
   "devDependencies": {
-    "cypress": "^13.13.2",
+    "cypress": "^13.13.3",
     "mocha": "^10.7.3",
     "mochawesome": "^7.1.3",
     "mochawesome-merge": "^4.3.0",
