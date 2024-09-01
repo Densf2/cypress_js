@@ -38,14 +38,16 @@ describe("Open main page and verify functionality", () => {
     });
   });
 
-  context("functionality", () => {
+  context("check functionality", () => {
     beforeEach(() => {
       cy.visit("https://auto.ria.com/uk/");
     });
     it("check redirect to details page", () => {
       cy.get("div.mhide a").eq(3).click();
       cy.get("h1.auto-head_title").should("contain", /\w+/g);
+      cy.task("log", "logs:redirect to details page is correct");
       generalElements.siteLogoInHeader().should("have.css", "opacity", "0");
+      cy.task("log", "logs:checked logo in header");
     });
 
     it("check news page", () => {
