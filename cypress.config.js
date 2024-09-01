@@ -15,5 +15,13 @@ module.exports = defineConfig({
       html: false,
       json: true,
     },
+    setupNodeEvents(on, config) {
+      on("task ", {
+        log(message) {
+          console.log(message);
+          return null;
+        },
+      });
+    },
   },
 });
