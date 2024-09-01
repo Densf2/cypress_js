@@ -6,6 +6,9 @@ jobs:
     name: E2E on Chrome
     steps:
       - uses: actions/checkout@v4
-      - uses: cypress-io/github-action@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - uses: cypress-io/github-action@v6
         with:
           browser: chrome
