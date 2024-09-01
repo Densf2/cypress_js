@@ -5,7 +5,13 @@ jobs:
     runs-on: ubuntu-22.04
     name: E2E on Chrome
     steps:
-      - uses: actions/checkout@v3
-      - uses: cypress-io/github-action@v5
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Trigger Cypress scenario
+        uses: cypress-io/github-action@v5
         with:
           browser: chrome
+          spec: cypress/e2e/open_auto_ria.cy.js
+
+      # - name: Trigger one file
+      #   run: 
