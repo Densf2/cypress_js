@@ -1,9 +1,6 @@
-const { defineConfig } = require("cypress");
-const {
-  addMatchImageSnapshotPlugin,
-} = require("@simonsmith/cypress-image-snapshot/plugin");
+import { defineConfig } from "cypress";
 
-module.exports = defineConfig({
+export default defineConfig({
   e2e: {
     experimentalWebKitSupport: true,
     chromeWebSecurity: false,
@@ -25,7 +22,6 @@ module.exports = defineConfig({
           return null;
         },
       });
-      addMatchImageSnapshotPlugin(on);
       return config;
     },
   },
