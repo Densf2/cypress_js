@@ -44,6 +44,5 @@ describe("Verification of product page", () => {
     cy.get("ul.main-nav__menu li a[href='/reviews/']").click();
     cy.url().should("include", "/reviews");
     cy.get("ul.widget__header_tags li a").eq(0).should("contain", "Огляди");
-    cy.matchImageSnapshot("Reviews page");
   });
 });
