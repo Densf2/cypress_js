@@ -2,7 +2,7 @@
 
 import Homepage from "./pages/homepage";
 
-describe("Verification of product page", () => {
+describe("Verification of dev news site", () => {
   const homepagelocators = new Homepage();
 
   beforeEach(() => {
@@ -16,24 +16,25 @@ describe("Verification of product page", () => {
     });
   });
 
-  it.skip("Check side news block", () => {
-    cy.get("@aintext").then((ainText) => {
-      cy.get("nav div.buttonSet li").eq(0).should("contain", "About ITNEXT");
+  it("Check nav block", () => {
+    cy.get("@itntext").then((itnText) => {
+      cy.get("nav div.buttonSet li")
+        .eq(0)
+        .should("contain", itnText.about_itnext);
+      cy.get("nav div.buttonSet li")
+        .eq(1)
+        .should("contain", itnText.write_for_itnext);
     });
   });
 
   // the test below without uploadig the text from fixtures
-  it.skip("Check the list of bussiness news", () => {
-    cy.get("ul.main-nav__menu li a[href='/business/']").click();
-    cy.url().should("include", "/business");
-    cy.get("ul.widget__header_tags li a").eq(0).should("contain", "Бізнес");
-    // verification that list of business news loaded
-    cy.get("a.widget__content p.h2").should("have.length.greaterThan", 5);
-  });
-
-  it.skip("Check the review news", () => {
-    cy.get("ul.main-nav__menu li a[href='/reviews/']").click();
-    cy.url().should("include", "/reviews");
-    cy.get("ul.widget__header_tags li a").eq(0).should("contain", "Огляди");
+  it("Check the list of kubernetes news", () => {
+    cy.get(
+      "nav div.buttonSet li a[href='https://itnext.io/kubernetes/home']"
+    ).click();
+    cy.url().should("include", "/kubernetes/home");
+    cy.get("img").eq(1).should("have.attr", "alt").and("include", "Kubernetes");
+    // verification that list of kubernetes news loaded
+    cy.get("h3.u-contentSansBold").should("have.length.greaterThan", 5);
   });
 });
