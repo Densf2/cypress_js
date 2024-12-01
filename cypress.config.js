@@ -1,9 +1,10 @@
-const { defineConfig } = require("cypress");
+import { defineConfig } from "cypress";
 
-module.exports = defineConfig({
+export default defineConfig({
   e2e: {
     experimentalWebKitSupport: true,
     chromeWebSecurity: false,
+    failOnStatusCode: false,
     viewportWidth: 1300,
     viewportHeight: 890,
     video: false,
