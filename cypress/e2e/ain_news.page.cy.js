@@ -37,7 +37,7 @@ describe("Verification of product page", () => {
     cy.url().should("include", "/business");
     cy.get("ul.widget__header_tags li a").eq(0).should("contain", "Бізнес");
     // verification that list of business news loaded
-    cy.get("a.widget__content h2").should("have.length.greaterThan", 5);
+    cy.get("a.widget__content p.h2").should("have.length.greaterThan", 5);
   });
 
   it("Check the review news", () => {
