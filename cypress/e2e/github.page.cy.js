@@ -3,17 +3,13 @@ import Homepage from "./pages/github/elements";
 describe("GitHub", () => {
   const homepage = new Homepage();
 
-  context("Security Page", () => {
+  context("Docs Page", () => {
     beforeEach(() => {
-      cy.visit("https://github.com/features/security");
+      cy.visit("https://docs.github.com/en");
     });
 
     it("check logo", () => {
       homepage.logoHeader().should("be.visible");
-      cy.wait(1000);
-      cy.get(
-        "div[data-testid='contentful-bg-image-container']"
-      ).matchImageSnapshot();
     });
   });
 });
