@@ -10,6 +10,7 @@ describe("GitHub", () => {
 
     it("check logo", () => {
       homepage.logoHeader().should("be.visible");
+      cy.matchImageSnapshot();
     });
   });
 });
