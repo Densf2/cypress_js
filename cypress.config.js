@@ -11,7 +11,6 @@ export default defineConfig({
     viewportHeight: 890,
     video: false,
     reporter: "mochawesome",
-    supportFile: false,
     reporterOptions: {
       reportDir: "report/mochawesome-report",
       owervrite: false,
