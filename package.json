@@ -2,6 +2,7 @@
   "name": "cy.tests.demo",
   "type": "module",
   "devDependencies": {
+    "@simonsmith/cypress-image-snapshot": "^9.1.0",
     "cypress": "^13.16.0",
     "mocha": "^10.2.0",
     "mochawesome": "^7.1.3",
