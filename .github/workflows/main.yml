@@ -1,4 +1,4 @@
-name: tests on Chrome
+name: E2E tests
 on: push
 jobs:
   chrome:
@@ -10,5 +10,3 @@ jobs:
         with:
           node-version: 20
       - uses: cypress-io/github-action@v6
-        with:
-          browser: chrome

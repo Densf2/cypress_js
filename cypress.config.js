@@ -1,5 +1,7 @@
 import { defineConfig } from "cypress";
 
+import { addMatchImageSnapshotPlugin } from "@simonsmith/cypress-image-snapshot/plugin.js";
+
 export default defineConfig({
   e2e: {
     experimentalWebKitSupport: true,
@@ -9,7 +11,6 @@ export default defineConfig({
     viewportHeight: 890,
     video: false,
     reporter: "mochawesome",
-    supportFile: false,
     reporterOptions: {
       reportDir: "report/mochawesome-report",
       owervrite: false,
@@ -17,6 +18,7 @@ export default defineConfig({
       json: true,
     },
     setupNodeEvents(on, config) {
+      addMatchImageSnapshotPlugin(on, config);
       on("task", {
         log(message) {
           console.log(message);

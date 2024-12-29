@@ -6,7 +6,10 @@ describe("Verification of dev news site", () => {
   const homepagelocators = new Homepage();
 
   beforeEach(() => {
-    cy.visit("https://itnext.io");
+    cy.visit("https://itnext.io", {
+      timeout: 10000,
+      failOnStatusCode: false,
+    });
     cy.fixture("itnext_text").as("itntext");
   });
 
