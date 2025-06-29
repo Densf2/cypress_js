@@ -6654,7 +6654,7 @@ function makeApi(runtimeState, opts) {
   const builtinModules = new Set(external_module_.Module.builtinModules || Object.keys(process.binding(`natives`))); // Splits a require request into its components, or return null if the request is a file path
 
   const pathRegExp = /^(?![a-zA-Z]:[\\/]|\\\\|\.{0,2}(?:\/|$))((?:@[^/]+\/)?[^/]+)\/*(.*|)$/; // Matches if the path starts with a valid path qualifier (./, ../, /)
-  // eslint-disable-next-line no-unused-vars
+   
 
   const isStrictRegExp = /^\.{0,2}\//; // Matches if the path must point to a directory (ie ends with /)
 

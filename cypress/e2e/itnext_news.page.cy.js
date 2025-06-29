@@ -16,6 +16,8 @@ describe("Verification of dev news site", () => {
   it("Check main page text", () => {
     cy.get("@itntext").then((itnText) => {
       cy.title().should("contain", itnText.page_title);
+      homepagelocators.logoInHeader().should("be.visible");
+      homepagelocators.searchIcon().should("be.visible");
     });
   });
 

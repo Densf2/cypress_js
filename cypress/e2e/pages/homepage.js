@@ -1,11 +1,10 @@
 class Homepage {
-    searchInput() {
-        return cy.get('input#searchFormQueryInput')
-    }
-
-    firstSearchResultItem() {
-        return cy.get('div.search-result:nth-child(1)')
-    }
+  logoInHeader() {
+    return cy.get('div.collectionHeader-logo a[aria-label="Go to ITNEXT"]');
+  }
+  searchIcon() {
+    return cy.get("span.svgIcon--search");
+  }
 }
 
-export default Homepage
+export default Homepage;
