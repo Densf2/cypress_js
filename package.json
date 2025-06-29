@@ -19,6 +19,7 @@
     "cy:run": "cypress run",
     "cleanup": "rm -rf report",
     "merge:report": "mochawesome-merge report/mochawesome-report/*.json > report/mochawesome-report/cypress_report.json",
-    "generate:html": "marge -o report report/mochawesome-report/cypress_report.json"
+    "generate:html": "marge -o report report/mochawesome-report/cypress_report.json",
+    "lint": " npx eslint . --fix"
   }
 }
