@@ -5,7 +5,7 @@
     "@eslint/js": "^9.30.0",
     "@simonsmith/cypress-image-snapshot": "^9.1.0",
     "cypress": "^14.5.0",
-    "eslint": "^9.30.0",
+    "eslint": "^9.30.1",
     "eslint-plugin-cypress": "^5.1.0",
     "globals": "^16.2.0",
     "mocha": "^11.7.1",
