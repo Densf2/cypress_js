@@ -3,7 +3,7 @@
   "type": "module",
   "devDependencies": {
     "@eslint/js": "^9.30.0",
-    "@simonsmith/cypress-image-snapshot": "^9.1.0",
+    "@simonsmith/cypress-image-snapshot": "^10.0.0",
     "cypress": "^14.5.2",
     "eslint": "^9.31.0",
     "eslint-plugin-cypress": "^5.1.0",
