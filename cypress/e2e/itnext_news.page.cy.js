@@ -17,29 +17,24 @@ describe("Verification of dev news site", () => {
     cy.get("@itntext").then((itnText) => {
       cy.title().should("contain", itnText.page_title);
       homepagelocators.logoInHeader().should("be.visible");
-      homepagelocators.searchIcon().should("be.visible");
+      homepagelocators.searchInput().should("be.visible");
     });
   });
 
   it("Check nav block", () => {
     cy.get("@itntext").then((itnText) => {
-      cy.get("nav div.buttonSet li")
-        .eq(0)
-        .should("contain", itnText.about_itnext);
-      cy.get("nav div.buttonSet li")
-        .eq(1)
-        .should("contain", itnText.write_for_itnext);
+      cy.get("a > p > span").eq(0).should("contain", itnText.about_itnext);
+      cy.get("a > p > span").eq(1).should("contain", itnText.write_for_itnext);
     });
   });
 
   // the test below without uploadig the text from fixtures
   it("Check the list of kubernetes news", () => {
-    cy.get(
-      "nav div.buttonSet li a[href='https://itnext.io/kubernetes/home']"
-    ).click();
-    cy.url().should("include", "/kubernetes/home");
-    cy.get("img").eq(1).should("have.attr", "alt").and("include", "Kubernetes");
+    cy.get("a > p > span").filter(":contains('Kubernetes')").click();
+    cy.url().should("include", "subpage");
+    // verification that we are on the kubernetes page
+    cy.get("h2").eq(1).contains("Kubernetes");
     // verification that list of kubernetes news loaded
-    cy.get("h3.u-contentSansBold").should("have.length.greaterThan", 5);
+    cy.get('div[role="link"]').should("have.length.greaterThan", 5);
   });
 });

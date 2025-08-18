@@ -1,9 +1,9 @@
 class Homepage {
   logoInHeader() {
-    return cy.get('div.collectionHeader-logo a[aria-label="Go to ITNEXT"]');
+    return cy.get('div.i.l > a > div > img[alt="ITNEXT"]');
   }
-  searchIcon() {
-    return cy.get("span.svgIcon--search");
+  searchInput() {
+    return cy.get('input[data-testid="headerSearchInput"]');
   }
 }
 
