@@ -1,13 +1,16 @@
 /// <reference types="Cypress" />
 
+//test data
+const url = "https://jpetstore.aspectran.com/";
+
 describe("JPetStore E-Commerce Application", () => {
   beforeEach(() => {
-    cy.visit("https://jpetstore.aspectran.com/");
+    cy.visit(url);
   });
 
   context("Homepage Tests", () => {
     it("should load the homepage successfully", () => {
-      cy.url().should("eq", "https://jpetstore.aspectran.com/");
+      cy.url().should("eq", url);
       cy.contains("JPetStore Demo").should("be.visible");
       cy.contains("The goal of the JPetStore Demo App").should("be.visible");
     });
@@ -66,13 +69,13 @@ describe("JPetStore E-Commerce Application", () => {
     it("should return to main menu from category page", () => {
       cy.contains("a", "Fish").click();
       cy.contains("a", "Return to Main Menu").click();
-      cy.url().should("eq", "https://jpetstore.aspectran.com/");
+      cy.url().should("eq", url);
     });
   });
 
   context("Product Listing Tests", () => {
     beforeEach(() => {
-      cy.visit("https://jpetstore.aspectran.com/categories/FISH");
+      cy.visit(`${url}categories/FISH`);
     });
 
     it("should display product list in category", () => {
@@ -104,7 +107,7 @@ describe("JPetStore E-Commerce Application", () => {
     });
 
     it("should display Sign In form elements", () => {
-      cy.visit("https://jpetstore.aspectran.com/account/signonForm");
+      cy.visit(`${url}account/signonForm1`);
       cy.get('input[name="username"]').should("be.visible");
       cy.get('input[name="password"]').should("be.visible");
       cy.contains("button", "Login").should("be.visible");
@@ -112,7 +115,7 @@ describe("JPetStore E-Commerce Application", () => {
     });
 
     it("should attempt login with demo credentials", () => {
-      cy.visit("https://jpetstore.aspectran.com/account/signonForm");
+      cy.visit(`${url}account/signonForm`);
       cy.get('input[name="username"]').type("j2ee");
       cy.get('input[name="password"]').type("j2ee");
       cy.contains("button", "Login").click();
@@ -128,7 +131,7 @@ describe("JPetStore E-Commerce Application", () => {
     });
 
     it("should display empty cart message when no items", () => {
-      cy.visit("https://jpetstore.aspectran.com/cart/viewCart");
+      cy.visit(`${url}cart/viewCart`);
       // Cart page should load (may show empty cart message)
       cy.url().should("include", "/cart/viewCart");
     });
