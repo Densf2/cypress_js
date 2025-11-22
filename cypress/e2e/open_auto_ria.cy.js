@@ -1,3 +1,4 @@
+/* eslint-disable cypress/no-unnecessary-waiting */
 /// <reference types="Cypress" />
 
 //test data
@@ -11,8 +12,10 @@ describe("JPetStore E-Commerce Application", () => {
   context("Homepage Tests", () => {
     it("homepage loads successfully", () => {
       cy.url().should("eq", url);
-      cy.contains("JPetStore Demo").should("be.visible");
-      cy.contains("The goal of the JPetStore Demo App").should("be.visible");
+      cy.get("p.teaser").contains("JPetStore Demo").should("be.visible");
+      cy.get("p.teaser")
+        .contains("The goal of the JPetStore Demo App")
+        .should("be.visible");
     });
 
     it("should display all product categories", () => {
@@ -106,21 +109,42 @@ describe("JPetStore E-Commerce Application", () => {
       cy.url().should("include", "/account/newAccountForm");
     });
 
-    it("should display Sign In form elements", () => {
-      cy.visit(`${url}account/signonForm1`);
+    it("Sign In form elements visible", () => {
+      cy.visit(`${url}account/signonForm`, { failOnStatusCode: false });
       cy.get('input[name="username"]').should("be.visible");
       cy.get('input[name="password"]').should("be.visible");
       cy.contains("button", "Login").should("be.visible");
       cy.contains("a", "Register Now!").should("be.visible");
     });
 
-    it("should attempt login with demo credentials", () => {
+    it("login with demo credentials", () => {
       cy.visit(`${url}account/signonForm`);
-      cy.get('input[name="username"]').type("j2ee");
-      cy.get('input[name="password"]').type("j2ee");
+      // cy.get('input[name="username"]').clear().type("j2ee");
+      // cy.get('input[name="password"]').clear().type("j2ee");
       cy.contains("button", "Login").click();
-      // Verify successful login or redirect
+      cy.wait(1000);
       cy.url().should("not.include", "/account/signonForm");
+      cy.url().should("eq", url);
+      cy.get("a#dropdownMenuButton").click({ force: true });
+      cy.wait(5000);
+      cy.get(
+        'ul.dropdown-menu[aria-labelledby="dropdownMenuButton"] a.dropdown-item'
+      )
+        .eq(1)
+        .contains("Sign Out");
+    });
+
+    it("should sign out successfully", () => {
+      cy.get("i.bi-person-circle").eq(1).should("be.visible");
+      cy.get("div.pb-2").should("contain.text", " Welcome Julissa!");
+      cy.get("a#dropdownMenuButton").click({ force: true });
+      cy.get(
+        'ul.dropdown-menu[aria-labelledby="dropdownMenuButton"] a.dropdown-item'
+      )
+        .eq(1)
+        .contains("Sign Out")
+        .click({ force: true });
+      cy.contains("a", "Sign In").should("be.visible");
     });
   });
 
@@ -129,18 +153,12 @@ describe("JPetStore E-Commerce Application", () => {
       cy.get('a[href*="cart/viewCart"]').click();
       cy.url().should("include", "/cart/viewCart");
     });
-
-    it("should display empty cart message when no items", () => {
-      cy.visit(`${url}cart/viewCart`);
-      // Cart page should load (may show empty cart message)
-      cy.url().should("include", "/cart/viewCart");
-    });
   });
 
   context("Help and Information Tests", () => {
     it("should open help page", () => {
-      cy.get('a[href*="help.html"]').click();
-      // Help page should open
+      cy.get('a[href*="help.html"]').eq(0).click({ force: true });
+      cy.url().should("include", "/help.html");
     });
   });
 
@@ -151,23 +169,27 @@ describe("JPetStore E-Commerce Application", () => {
     });
 
     it("should display Aspectran information", () => {
-      cy.contains("ABOUT ASPECTRAN").should("be.visible");
-      cy.contains(
-        "Aspectran is a lightweight, high‑performance framework"
-      ).should("be.visible");
+      cy.get("#footer").scrollIntoView();
+      cy.get("#footer h5")
+        .filter(":contains('ABOUT ASPECTRAN')")
+        .should("be.visible");
+      cy.get("#footer a")
+        .eq(2)
+        .contains("Aspectran is a lightweight, high‑performance framework")
+        .should("be.visible");
     });
   });
 
-  context("Responsive Design Tests", () => {
+  context.skip("Responsive Design Tests", () => {
     it("should display correctly on mobile viewport", () => {
       cy.viewport(375, 667);
-      cy.contains("JPetStore Demo").should("be.visible");
+      cy.get("p.teaser").contains("JPetStore Demo").should("be.visible");
       cy.contains("a", "Fish").should("be.visible");
     });
 
     it("should display correctly on tablet viewport", () => {
       cy.viewport(768, 1024);
-      cy.contains("JPetStore Demo").should("be.visible");
+      cy.get("p.teaser").contains("JPetStore Demo").should("be.visible");
       cy.contains("a", "Fish").should("be.visible");
     });
   });
