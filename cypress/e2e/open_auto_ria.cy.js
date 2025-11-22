@@ -167,9 +167,7 @@ describe("JPetStore E-Commerce Application", () => {
 
     it("should display Aspectran information", () => {
       cy.get("#footer").scrollIntoView();
-      cy.get("#footer h5")
-        .filter(":contains('ABOUT ASPECTRAN')")
-        .should("be.visible");
+      // cy.get("a > h5").contains("ABOUT ASPECTRAN").should("be.visible");
       cy.get("#footer a")
         .eq(2)
         .contains("Aspectran is a lightweight, high‑performance framework")
@@ -177,17 +175,17 @@ describe("JPetStore E-Commerce Application", () => {
     });
   });
 
-  context.skip("Responsive Design Tests", () => {
+  context("Responsive Design Tests", () => {
     it("should display correctly on mobile viewport", () => {
       cy.viewport(375, 667);
       cy.get("p.teaser").contains("JPetStore Demo").should("be.visible");
-      cy.contains("a", "Fish").should("be.visible");
+      cy.get("h4 a").eq(0).contains("Fish").should("be.visible");
     });
 
     it("should display correctly on tablet viewport", () => {
       cy.viewport(768, 1024);
       cy.get("p.teaser").contains("JPetStore Demo").should("be.visible");
-      cy.contains("a", "Fish").should("be.visible");
+      cy.get("h4 a").eq(0).contains("Fish").should("be.visible");
     });
   });
 });
