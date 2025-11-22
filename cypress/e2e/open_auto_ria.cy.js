@@ -9,7 +9,7 @@ describe("JPetStore E-Commerce Application", () => {
   });
 
   context("Homepage Tests", () => {
-    it("should load the homepage successfully", () => {
+    it("homepage loads successfully", () => {
       cy.url().should("eq", url);
       cy.contains("JPetStore Demo").should("be.visible");
       cy.contains("The goal of the JPetStore Demo App").should("be.visible");
