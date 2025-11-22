@@ -126,15 +126,12 @@ describe("JPetStore E-Commerce Application", () => {
       cy.url().should("not.include", "/account/signonForm");
       cy.url().should("eq", url);
       cy.get("a#dropdownMenuButton").click({ force: true });
-      cy.wait(5000);
       cy.get(
         'ul.dropdown-menu[aria-labelledby="dropdownMenuButton"] a.dropdown-item'
       )
         .eq(1)
         .contains("Sign Out");
-    });
-
-    it("should sign out successfully", () => {
+      // sign out steps
       cy.get("i.bi-person-circle").eq(1).should("be.visible");
       cy.get("div.pb-2").should("contain.text", " Welcome Julissa!");
       cy.get("a#dropdownMenuButton").click({ force: true });
