@@ -8,7 +8,7 @@
     "eslint": "^9.37.0",
     "eslint-plugin-cypress": "^5.2.0",
     "globals": "^16.3.0",
-    "mocha": "^11.7.4",
+    "mocha": "^11.7.5",
     "mochawesome": "^7.1.4",
     "mochawesome-merge": "^5.0.0",
     "mochawesome-report-generator": "^6.3.0",
