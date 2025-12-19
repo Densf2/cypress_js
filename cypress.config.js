@@ -4,7 +4,10 @@ import { addMatchImageSnapshotPlugin } from "@simonsmith/cypress-image-snapshot/
 
 export default defineConfig({
   e2e: {
+    browser: "chrome",
     experimentalWebKitSupport: true,
+    experimentalMemoryManagement: true,
+    numTestsKeptInMemory: 0,
     chromeWebSecurity: false,
     failOnStatusCode: false,
     viewportWidth: 1300,
@@ -18,6 +21,19 @@ export default defineConfig({
       json: true,
     },
     setupNodeEvents(on, config) {
+      on("before:browser:launch", (browser, launchOptions) => {
+        if (browser.family === "chromium" && browser.name !== "electron") {
+          launchOptions.args.push("--disable-gpu");
+          launchOptions.args.push("--disable-software-rasterizer");
+        }
+        if (browser.name === "electron") {
+          launchOptions.preferences.webPreferences = {
+            ...launchOptions.preferences.webPreferences,
+            webgl: false,
+          };
+        }
+        return launchOptions;
+      });
       addMatchImageSnapshotPlugin(on, config);
       on("task", {
         log(message) {
