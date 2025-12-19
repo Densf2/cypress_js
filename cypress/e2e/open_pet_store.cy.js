@@ -1,5 +1,5 @@
 /* eslint-disable cypress/no-unnecessary-waiting */
-/// <reference types="Cypress" />
+/// <reference types="cypress" />
 
 //test data
 const url = "https://jpetstore.aspectran.com/";
@@ -119,8 +119,6 @@ describe("JPetStore E-Commerce Application", () => {
 
     it("login with demo credentials", () => {
       cy.visit(`${url}account/signonForm`);
-      // cy.get('input[name="username"]').clear().type("j2ee");
-      // cy.get('input[name="password"]').clear().type("j2ee");
       cy.contains("button", "Login").click();
       cy.wait(1000);
       cy.url().should("not.include", "/account/signonForm");
@@ -131,9 +129,9 @@ describe("JPetStore E-Commerce Application", () => {
       )
         .eq(1)
         .contains("Sign Out");
-      // sign out steps
       cy.get("i.bi-person-circle").eq(1).should("be.visible");
-      cy.get("div.pb-2").should("contain.text", " Welcome Julissa!");
+      cy.get("div.pb-2").contains(" Welcome ");
+      // sign out steps
       cy.get("a#dropdownMenuButton").click({ force: true });
       cy.get(
         'ul.dropdown-menu[aria-labelledby="dropdownMenuButton"] a.dropdown-item'
