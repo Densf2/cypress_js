@@ -1,5 +1,5 @@
 /* eslint-disable cypress/no-unnecessary-waiting */
-/// <reference types="Cypress" />
+/// <reference types="cypress" />
 
 //test data
 const url = "https://jpetstore.aspectran.com/";
