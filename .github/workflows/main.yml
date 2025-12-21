@@ -1,5 +1,7 @@
 name: E2E tests
 on: push
+permissions:
+  contents: read
 jobs:
   chrome:
     runs-on: ubuntu-22.04
