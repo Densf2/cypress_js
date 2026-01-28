@@ -5,12 +5,12 @@ describe("UI Test Automation Playground", () => {
     cy.visit("http://uitestingplayground.com/");
   });
 
-  it("should load the homepage successfully", () => {
+  it("homepage loads successfully", () => {
     cy.url().should("include", "uitestingplayground.com");
     cy.title().should("contain", "UI Test Automation Playground");
   });
 
-  it("should display navigation bar elements", () => {
+  it("navigation bar elements are visible", () => {
     cy.get("nav.navbar").should("be.visible");
     cy.get("a.navbar-brand").should("be.visible").and("contain", "UITAP");
     cy.get('a.nav-link[href="/home"]')
@@ -21,7 +21,7 @@ describe("UI Test Automation Playground", () => {
       .and("contain", "Resources");
   });
 
-  it("should display main title and description", () => {
+  it("main page title and description", () => {
     cy.get("h1#title")
       .should("be.visible")
       .and("contain", "UI Test Automation");
@@ -33,7 +33,7 @@ describe("UI Test Automation Playground", () => {
     cy.get("blockquote#citation footer").should("contain", "Aristotle");
   });
 
-  it("should display alert warning message", () => {
+  it("alert warning message is visible", () => {
     cy.get("div.alert-warning")
       .should("be.visible")
       .and(
@@ -42,7 +42,7 @@ describe("UI Test Automation Playground", () => {
       );
   });
 
-  it("should display Dynamic ID section link", () => {
+  it("Dynamic ID section link is visible", () => {
     cy.get('a[href="/dynamicid"]')
       .should("be.visible")
       .and("contain", "Dynamic ID");
@@ -52,83 +52,83 @@ describe("UI Test Automation Playground", () => {
       .should("contain", "Make sure you are not recording dynamic IDs");
   });
 
-  it("should display Class Attribute section link", () => {
+  it("Class Attribute section link is visible", () => {
     cy.get('a[href="/classattr"]')
       .should("be.visible")
       .and("contain", "Class Attribute");
   });
 
-  it("should display Hidden Layers section link", () => {
+  it("Hidden Layers section link is visible", () => {
     cy.get('a[href="/hiddenlayers"]')
       .should("be.visible")
       .and("contain", "Hidden Layers");
   });
 
-  it("should display Load Delay section link", () => {
+  it("Load Delay section link is visible", () => {
     cy.get('a[href="/loaddelay"]')
       .should("be.visible")
       .and("contain", "Load Delay");
   });
 
-  it("should display AJAX Data section link", () => {
+  it("AJAX Data section link is visible", () => {
     cy.get('a[href="/ajax"]').should("be.visible").and("contain", "AJAX Data");
   });
 
-  it("should display Click section link", () => {
+  it("Click section link is visible", () => {
     cy.get('a[href="/click"]').should("be.visible").and("contain", "Click");
   });
 
-  it("should display Text Input section link", () => {
+  it("Text Input section link is visible", () => {
     cy.get('a[href="/textinput"]')
       .should("be.visible")
       .and("contain", "Text Input");
   });
 
-  it("should display Visibility section link", () => {
+  it("Visibility section link is visible", () => {
     cy.get('a[href="/visibility"]')
       .should("be.visible")
       .and("contain", "Visibility");
   });
 
-  it("should display Sample App section link", () => {
+  it("Sample App section link is visible", () => {
     cy.get('a[href="/sampleapp"]')
       .should("be.visible")
       .and("contain", "Sample App");
   });
 
-  it("should display Progress Bar section link", () => {
+  it("Progress Bar section link is visible", () => {
     cy.get('a[href="/progressbar"]')
       .should("be.visible")
       .and("contain", "Progress Bar");
   });
 
-  it("should display footer with copyright info", () => {
+  it("verification footer info", () => {
     cy.get("footer#footer").should("be.visible");
     cy.get("footer#footer").should("contain", "Fork the website on GitHub");
     cy.get("footer#footer").should("contain", "Inflectra Corporation");
   });
 
-  it("should navigate to Home page", () => {
+  it("redirect to Home page", () => {
     cy.get('a.nav-link[href="/home"]').click();
     cy.url().should("include", "/home");
   });
 
-  it("should navigate to Resources page", () => {
+  it("redirect to Resources page", () => {
     cy.get('a.nav-link[href="/resources"]').click();
     cy.url().should("include", "/resources");
   });
 
-  it("should navigate to Dynamic ID page", () => {
+  it("redirect to Dynamic ID page", () => {
     cy.get('a[href="/dynamicid"]').click();
     cy.url().should("include", "/dynamicid");
   });
 
-  it("should navigate to Sample App page", () => {
+  it("redirect to Sample App page", () => {
     cy.get('a[href="/sampleapp"]').click();
     cy.url().should("include", "/sampleapp");
   });
 
-  it("should display cube image", () => {
+  it("rubik's cube image is visible", () => {
     cy.get("img.img-fluid")
       .should("be.visible")
       .and("have.attr", "alt", "Responsive image");
