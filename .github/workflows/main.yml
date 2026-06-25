@@ -5,8 +5,8 @@ jobs:
     runs-on: ubuntu-22.04
     name: E2E on Chrome
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@6
         with:
           node-version: 22
-      - uses: cypress-io/github-action@v6
+      - uses: cypress-io/github-action@v7
