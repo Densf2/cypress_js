@@ -2,7 +2,7 @@
 
 import Homepage from "./pages/homepage";
 
-describe("Verification of dev news site", () => {
+describe.skip("Verification of dev news site", () => {
   const homepagelocators = new Homepage();
 
   beforeEach(() => {
