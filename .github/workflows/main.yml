@@ -11,6 +11,7 @@ jobs:
         with:
           node-version: latest
           cache: "npm"
+      - run: npm ci
       - uses: cypress-io/github-action@v7
         with:
           browser: chrome
