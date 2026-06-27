@@ -10,4 +10,5 @@ jobs:
       - uses: actions/setup-node@v6
         with:
           node-version: latest
-      - uses: cypress-io/github-action@v7
+      - run: npm ci
+      - run: npm run e2e:run
