@@ -3,10 +3,23 @@
 
 //test data
 const url = "https://jpetstore.aspectran.com/";
+const isCi = Boolean(Cypress.env("CI") || Cypress.env("GITHUB_ACTIONS"));
+
+let skipLiveSuite = false;
 
 describe("JPetStore E-Commerce Application", () => {
+  before(function () {
+    cy.request({ url, failOnStatusCode: false }).then((response) => {
+      skipLiveSuite = isCi && response.status === 403;
+
+      if (skipLiveSuite) {
+        this.skip();
+      }
+    });
+  });
+
   beforeEach(() => {
-    cy.visit(url);
+    cy.visit(url, { failOnStatusCode: false });
   });
 
   context("Homepage Tests", () => {
@@ -98,7 +111,7 @@ describe("JPetStore E-Commerce Application", () => {
       cy.contains("a", "Sign In").click();
       cy.url().should("include", "/account/signonForm");
       cy.contains("Please enter your username and password").should(
-        "be.visible"
+        "be.visible",
       );
       cy.get('input[name="username"]').should("be.visible");
       cy.get('input[name="password"]').should("be.visible");
@@ -125,7 +138,7 @@ describe("JPetStore E-Commerce Application", () => {
       cy.url().should("eq", url);
       cy.get("a#dropdownMenuButton").click({ force: true });
       cy.get(
-        'ul.dropdown-menu[aria-labelledby="dropdownMenuButton"] a.dropdown-item'
+        'ul.dropdown-menu[aria-labelledby="dropdownMenuButton"] a.dropdown-item',
       )
         .eq(1)
         .contains("Sign Out");
@@ -134,7 +147,7 @@ describe("JPetStore E-Commerce Application", () => {
       // sign out steps
       cy.get("a#dropdownMenuButton").click({ force: true });
       cy.get(
-        'ul.dropdown-menu[aria-labelledby="dropdownMenuButton"] a.dropdown-item'
+        'ul.dropdown-menu[aria-labelledby="dropdownMenuButton"] a.dropdown-item',
       )
         .eq(1)
         .contains("Sign Out")
