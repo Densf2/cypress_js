@@ -3,21 +3,11 @@
 
 //test data
 const url = "https://jpetstore.aspectran.com/";
-const isCi = Boolean(Cypress.env("CI") || Cypress.env("GITHUB_ACTIONS"));
+const describeIfEnabled = Cypress.env("SKIP_JPETSTORE")
+  ? describe.skip
+  : describe;
 
-let skipLiveSuite = false;
-
-describe("JPetStore E-Commerce Application", () => {
-  before(function () {
-    cy.request({ url, failOnStatusCode: false }).then((response) => {
-      skipLiveSuite = isCi && response.status === 403;
-
-      if (skipLiveSuite) {
-        this.skip();
-      }
-    });
-  });
-
+describeIfEnabled("JPetStore E-Commerce Application", () => {
   beforeEach(() => {
     cy.visit(url, { failOnStatusCode: false });
   });
