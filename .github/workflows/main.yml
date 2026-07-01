@@ -2,13 +2,11 @@ name: E2E tests
 on: push
 jobs:
   chrome:
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-24.04
     name: E2E on Chrome
     timeout-minutes: 90
     steps:
       - uses: actions/checkout@v6
-      - uses: actions/setup-node@v6
+      - uses: cypress-io/github-action@v7
         with:
-          node-version: latest
-      - run: npm ci
-      - run: npm run e2e:run
+          browser: chrome
