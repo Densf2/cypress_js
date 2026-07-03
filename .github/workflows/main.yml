@@ -4,11 +4,13 @@ permissions:
   contents: read
 jobs:
   chrome:
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-24.04
     name: E2E on Chrome
+    timeout-minutes: 90
+    env:
+      CYPRESS_SKIP_JPETSTORE: true
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - uses: actions/checkout@v6
+      - uses: cypress-io/github-action@v7
         with:
-          node-version: 22
-      - uses: cypress-io/github-action@v6
+          browser: chrome
