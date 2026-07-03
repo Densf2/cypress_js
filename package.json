@@ -4,15 +4,14 @@
   "devDependencies": {
     "@eslint/js": "^10.0.1",
     "@simonsmith/cypress-image-snapshot": "^10.0.3",
-    "cypress": "^15.13.0",
+    "cypress": "^15.18.0",
     "eslint": "^10.0.3",
     "eslint-plugin-cypress": "^5.2.1",
     "globals": "^17.4.0",
-    "mocha": "^11.7.5",
-    "mochawesome": "^7.1.4",
+    "mocha": "^11.3.0",
+    "mochawesome": "7.1.4",
     "mochawesome-merge": "^5.1.1",
     "mochawesome-report-generator": "^6.3.2",
-    "playwright-webkit": "^1.61.1",
     "yarn": "^1.22.22"
   },
   "scripts": {
