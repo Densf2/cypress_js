@@ -6,7 +6,7 @@
     "@simonsmith/cypress-image-snapshot": "^10.0.4",
     "cypress": "^15.18.0",
     "eslint": "^10.8.0",
-    "eslint-plugin-cypress": "^6.4.2",
+    "eslint-plugin-cypress": "^6.4.3",
     "globals": "^17.8.0",
     "mocha": "^11.7.6",
     "mochawesome": "7.1.4",
