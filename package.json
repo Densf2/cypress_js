@@ -4,8 +4,8 @@
   "devDependencies": {
     "@eslint/js": "^10.0.1",
     "@simonsmith/cypress-image-snapshot": "^10.0.4",
-    "cypress": "^15.20.0",
-    "eslint": "^10.9.1",
+    "cypress": "^15.21.1",
+    "eslint": "^10.8.0",
     "eslint-plugin-cypress": "^7.0.0",
     "globals": "^17.8.0",
     "mocha": "^11.8.0",
