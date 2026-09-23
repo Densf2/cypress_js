@@ -1,5 +1,16 @@
 /// <reference types="cypress" />
 
+import ClearInputPage from "./pages/ui_playground/clear_input.elements";
+import {
+  clearField,
+  clearFields,
+  fieldShouldBeEmpty,
+  fieldShouldHaveValue,
+  fillField,
+  remainingFieldsShouldBe,
+} from "./helpers/clear_input.helpers";
+import playgroundData from "../fixtures/ui_playground.json";
+
 describe("UI Test Automation Playground", () => {
   beforeEach(() => {
     cy.visit("http://uitestingplayground.com/");
@@ -132,5 +143,75 @@ describe("UI Test Automation Playground", () => {
     cy.get("img.img-fluid")
       .should("be.visible")
       .and("have.attr", "alt", "Responsive image");
+  });
+});
+
+describe("UI Test Automation Playground - Clear Input", () => {
+  const clearInputPage = new ClearInputPage();
+  const { title, fields } = playgroundData.clearInput;
+  const fieldNames = Object.keys(fields);
+
+  beforeEach(() => {
+    cy.visit("http://uitestingplayground.com/clearinput");
+  });
+
+  it("page title and description are visible", () => {
+    cy.url().should("include", "/clearinput");
+    clearInputPage.pageTitle().should("be.visible").and("have.text", title);
+    clearInputPage
+      .pageDescription()
+      .should("be.visible")
+      .and("contain", "Clearing text from input controls");
+  });
+
+  it("all fields are displayed with labels", () => {
+    clearInputPage.allFields().should("have.length", fieldNames.length);
+    fieldNames.forEach((name) => {
+      clearInputPage.fieldLabel(name).should("have.text", fields[name].label);
+      clearInputPage.field(name).should("be.visible");
+    });
+  });
+
+  it("all fields are pre-filled with initial values", () => {
+    fieldNames.forEach((name) => {
+      fieldShouldHaveValue(name, fields[name].value);
+    });
+    remainingFieldsShouldBe(fieldNames.length);
+  });
+
+  fieldNames.forEach((name) => {
+    it(`clearing ${fields[name].label} leaves it empty`, () => {
+      clearField(name);
+      fieldShouldBeEmpty(name);
+      remainingFieldsShouldBe(fieldNames.length - 1);
+    });
+  });
+
+  it("clearing one field does not affect other fields", () => {
+    clearField("textInput");
+    fieldNames
+      .filter((name) => name !== "textInput")
+      .forEach((name) => fieldShouldHaveValue(name, fields[name].value));
+  });
+
+  it("status counter decreases as fields are cleared", () => {
+    fieldNames.forEach((name, index) => {
+      clearField(name);
+      remainingFieldsShouldBe(fieldNames.length - index - 1);
+    });
+  });
+
+  it("clearing all fields shows success status", () => {
+    clearFields(fieldNames);
+    fieldNames.forEach(fieldShouldBeEmpty);
+    remainingFieldsShouldBe(0);
+  });
+
+  it("filling a cleared field increases status counter", () => {
+    clearFields(fieldNames);
+    remainingFieldsShouldBe(0);
+    fillField("textInput", "New value");
+    fieldShouldHaveValue("textInput", "New value");
+    remainingFieldsShouldBe(1);
   });
 });

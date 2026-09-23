@@ -1,0 +1,22 @@
+{
+  "clearInput": {
+    "title": "Clear Input",
+    "fields": {
+      "textInput": { "label": "Input (type=text)", "value": "Initial Text Value" },
+      "textarea": {
+        "label": "Textarea",
+        "value": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec auctor, libero eget bibendum."
+      },
+      "password": { "label": "Input (type=password)", "value": "MySecretPassword" },
+      "email": { "label": "Input (type=email)", "value": "user@example.com" },
+      "number": { "label": "Input (type=number)", "value": "42" },
+      "search": { "label": "Input (type=search)", "value": "Search query" },
+      "url": { "label": "Input (type=url)", "value": "https://www.example.com" },
+      "tel": { "label": "Input (type=tel)", "value": "+1 (555) 123-4567" },
+      "contentEditable": {
+        "label": "Content Editable Div",
+        "value": "This is an editable div element. It behaves differently from standard input fields."
+      }
+    }
+  }
+}
