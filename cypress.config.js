@@ -6,7 +6,6 @@ export default defineConfig({
   e2e: {
     browser: "chrome",
     experimentalWebKitSupport: true,
-    experimentalMemoryManagement: true,
     numTestsKeptInMemory: 0,
     chromeWebSecurity: false,
     failOnStatusCode: false,

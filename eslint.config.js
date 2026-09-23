@@ -7,4 +7,8 @@ export default defineConfig([
   js.configs.recommended,
   pluginCypress.configs.recommended,
   { files: ["cypress/**/*.js"] },
+  {
+    files: ["cypress.config.js"],
+    languageOptions: { globals: { process: "readonly" } },
+  },
 ]);
