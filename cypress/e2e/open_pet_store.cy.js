@@ -3,7 +3,7 @@
 
 //test data
 const url = "https://jpetstore.aspectran.com/";
-const describeIfEnabled = Cypress.env("SKIP_JPETSTORE")
+const describeIfEnabled = Cypress.expose("SKIP_JPETSTORE")
   ? describe.skip
   : describe;
 
