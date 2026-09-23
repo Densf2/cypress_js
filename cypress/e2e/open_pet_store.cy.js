@@ -21,7 +21,7 @@ describeIfEnabled("JPetStore E-Commerce Application", () => {
         .should("be.visible");
     });
 
-    it("should display all product categories", () => {
+    it("all product categories visible", () => {
       cy.contains("a", "Fish").should("be.visible");
       cy.contains("a", "Dogs").should("be.visible");
       cy.contains("a", "Cats").should("be.visible");
@@ -29,7 +29,7 @@ describeIfEnabled("JPetStore E-Commerce Application", () => {
       cy.contains("a", "Birds").should("be.visible");
     });
 
-    it("should display navigation links", () => {
+    it("navigation links visible", () => {
       cy.contains("a", "Sign In").should("be.visible");
       cy.contains("a", "Sign Up").should("be.visible");
       cy.get('a[href*="cart/viewCart"]').should("be.visible");
@@ -38,7 +38,7 @@ describeIfEnabled("JPetStore E-Commerce Application", () => {
   });
 
   context("Category Navigation Tests", () => {
-    it("should navigate to Fish category", () => {
+    it("navigation to Fish category", () => {
       cy.contains("a", "Fish").click();
       cy.url().should("include", "/categories/FISH");
       cy.contains("h3", "Fish").should("be.visible");
@@ -48,31 +48,31 @@ describeIfEnabled("JPetStore E-Commerce Application", () => {
       cy.contains("Goldfish").should("be.visible");
     });
 
-    it("should navigate to Dogs category", () => {
+    it("navigation to Dogs category", () => {
       cy.contains("a", "Dogs").click();
       cy.url().should("include", "/categories/DOGS");
       cy.contains("h3", "Dogs").should("be.visible");
     });
 
-    it("should navigate to Cats category", () => {
+    it("navigation to Cats category", () => {
       cy.contains("a", "Cats").click();
       cy.url().should("include", "/categories/CATS");
       cy.contains("h3", "Cats").should("be.visible");
     });
 
-    it("should navigate to Reptiles category", () => {
+    it("navigation to Reptiles category", () => {
       cy.contains("a", "Reptiles").click();
       cy.url().should("include", "/categories/REPTILES");
       cy.contains("h3", "Reptiles").should("be.visible");
     });
 
-    it("should navigate to Birds category", () => {
+    it("navigation to Birds category", () => {
       cy.contains("a", "Birds").click();
       cy.url().should("include", "/categories/BIRDS");
       cy.contains("h3", "Birds").should("be.visible");
     });
 
-    it("should return to main menu from category page", () => {
+    it("return to main menu from category page", () => {
       cy.contains("a", "Fish").click();
       cy.contains("a", "Return to Main Menu").click();
       cy.url().should("eq", url);
@@ -84,20 +84,20 @@ describeIfEnabled("JPetStore E-Commerce Application", () => {
       cy.visit(`${url}categories/FISH`);
     });
 
-    it("should display product list in category", () => {
+    it("display product list in category", () => {
       cy.get("table").should("be.visible");
       cy.contains("td", "FI-SW-01").should("be.visible");
       cy.contains("td", "Angelfish").should("be.visible");
     });
 
-    it("should click on a product to view details", () => {
+    it("click on a product to view details", () => {
       cy.contains("a", "FI-SW-01").click();
       cy.url().should("include", "/products/FI-SW-01");
     });
   });
 
   context("Authentication Tests", () => {
-    it("should navigate to Sign In page", () => {
+    it("navigate to Sign In page", () => {
       cy.contains("a", "Sign In").click();
       cy.url().should("include", "/account/signonForm");
       cy.contains("Please enter your username and password").should(
@@ -107,7 +107,7 @@ describeIfEnabled("JPetStore E-Commerce Application", () => {
       cy.get('input[name="password"]').should("be.visible");
     });
 
-    it("should navigate to Sign Up page", () => {
+    it("navigate to Sign Up page", () => {
       cy.contains("a", "Sign Up").click();
       cy.url().should("include", "/account/newAccountForm");
     });
@@ -147,26 +147,26 @@ describeIfEnabled("JPetStore E-Commerce Application", () => {
   });
 
   context("Shopping Cart Tests", () => {
-    it("should navigate to cart page", () => {
+    it("navigate to cart page", () => {
       cy.get('a[href*="cart/viewCart"]').click();
       cy.url().should("include", "/cart/viewCart");
     });
   });
 
   context("Help and Information Tests", () => {
-    it("should open help page", () => {
+    it("open help page", () => {
       cy.get('a[href*="help.html"]').eq(0).click({ force: true });
       cy.url().should("include", "/help.html");
     });
   });
 
   context("Footer and External Links Tests", () => {
-    it("should display footer links", () => {
+    it("display footer links", () => {
       cy.contains("a", "aspectran.com").should("be.visible");
       cy.contains("a", "mybatis.org").should("be.visible");
     });
 
-    it("should display Aspectran information", () => {
+    it("Aspectran information visible", () => {
       cy.get("#footer").scrollIntoView();
       // cy.get("a > h5").contains("ABOUT ASPECTRAN").should("be.visible");
       cy.get("#footer a")
@@ -177,13 +177,13 @@ describeIfEnabled("JPetStore E-Commerce Application", () => {
   });
 
   context("Responsive Design Tests", () => {
-    it("should display correctly on mobile viewport", () => {
+    it("display correctly on mobile viewport", () => {
       cy.viewport(375, 667);
       cy.get("p.teaser").contains("JPetStore Demo").should("be.visible");
       cy.get("h4 a").eq(0).contains("Fish").should("be.visible");
     });
 
-    it("should display correctly on tablet viewport", () => {
+    it("display correctly on tablet viewport", () => {
       cy.viewport(768, 1024);
       cy.get("p.teaser").contains("JPetStore Demo").should("be.visible");
       cy.get("h4 a").eq(0).contains("Fish").should("be.visible");
