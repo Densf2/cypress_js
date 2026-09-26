@@ -18,5 +18,18 @@
         "value": "This is an editable div element. It behaves differently from standard input fields."
       }
     }
+  },
+  "alerts": {
+    "title": "Alerts",
+    "description": "Dealing with standard alerts, prompts and confirmations is an important skill in test automation.",
+    "alertMessage": "Today is a working day.\nOr less likely a holiday.",
+    "confirmMessage": "Today is Friday.\nDo you agree?",
+    "confirmAcceptFollowUpAlert": "Yes",
+    "confirmDismissFollowUpAlert": "No",
+    "promptMessage": "Choose \"cats\" or 'dogs'.\nEnter your value:",
+    "promptDefaultValue": "cats",
+    "promptCustomValue": "dogs",
+    "promptCustomFollowUpAlert": "User value: dogs",
+    "promptCancelFollowUpAlert": "User value: no answer"
   }
 }
