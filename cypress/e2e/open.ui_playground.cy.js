@@ -9,6 +9,8 @@ import {
   fillField,
   remainingFieldsShouldBe,
 } from "./helpers/clear_input.helpers";
+import AlertsPage from "./pages/ui_playground/alerts.elements";
+import { stubAlert, stubConfirm, stubPrompt } from "./helpers/alerts.helpers";
 import playgroundData from "../fixtures/ui_playground.json";
 
 describe("UI Test Automation Playground", () => {
@@ -213,5 +215,83 @@ describe("UI Test Automation Playground - Clear Input", () => {
     fillField("textInput", "New value");
     fieldShouldHaveValue("textInput", "New value");
     remainingFieldsShouldBe(1);
+  });
+});
+
+describe("UI Test Automation Playground - Alerts", () => {
+  const alertsPage = new AlertsPage();
+  const {
+    title,
+    description,
+    alertMessage,
+    confirmMessage,
+    confirmAcceptFollowUpAlert,
+    confirmDismissFollowUpAlert,
+    promptMessage,
+    promptDefaultValue,
+    promptCustomValue,
+    promptCustomFollowUpAlert,
+    promptCancelFollowUpAlert,
+  } = playgroundData.alerts;
+
+  beforeEach(() => {
+    cy.visit("http://uitestingplayground.com/alerts");
+  });
+
+  it("page title and description are visible", () => {
+    cy.url().should("include", "/alerts");
+    alertsPage.pageTitle().should("be.visible").and("have.text", title);
+    alertsPage.pageDescription().should("be.visible").and("have.text", description);
+  });
+
+  it("clicking Alert shows a window alert with the expected message", () => {
+    stubAlert();
+    alertsPage.alertButton().click();
+    cy.get("@alertStub").should("have.been.calledWith", alertMessage);
+  });
+
+  it("accepting the Confirm dialog shows a follow-up alert with Yes", () => {
+    stubConfirm(true);
+    stubAlert();
+    alertsPage.confirmButton().click();
+    cy.get("@confirmStub").should("have.been.calledWith", confirmMessage);
+    cy.get("@alertStub").should("have.been.calledWith", confirmAcceptFollowUpAlert);
+  });
+
+  it("dismissing the Confirm dialog shows a follow-up alert with No", () => {
+    stubConfirm(false);
+    stubAlert();
+    alertsPage.confirmButton().click();
+    cy.get("@confirmStub").should("have.been.calledWith", confirmMessage);
+    cy.get("@alertStub").should("have.been.calledWith", confirmDismissFollowUpAlert);
+  });
+
+  it("clicking Prompt shows a window prompt with the expected message and default value", () => {
+    stubPrompt(promptDefaultValue);
+    stubAlert();
+    alertsPage.promptButton().click();
+    cy.get("@promptStub").should(
+      "have.been.calledWith",
+      promptMessage,
+      promptDefaultValue
+    );
+    cy.get("@alertStub").should(
+      "have.been.calledWith",
+      `User value: ${promptDefaultValue}`
+    );
+  });
+
+  it("entering a custom prompt value shows a follow-up alert with that value", () => {
+    stubPrompt(promptCustomValue);
+    stubAlert();
+    alertsPage.promptButton().click();
+    cy.get("@alertStub").should("have.been.calledWith", promptCustomFollowUpAlert);
+  });
+
+  it("cancelling the Prompt dialog shows a follow-up alert with no answer", () => {
+    stubPrompt(null);
+    stubAlert();
+    alertsPage.promptButton().click();
+    cy.get("@alertStub").should("have.been.calledWith", promptCancelFollowUpAlert);
   });
 });
