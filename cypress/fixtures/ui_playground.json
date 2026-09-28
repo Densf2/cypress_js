@@ -31,5 +31,15 @@
     "promptCustomValue": "dogs",
     "promptCustomFollowUpAlert": "User value: dogs",
     "promptCancelFollowUpAlert": "User value: no answer"
+  },
+  "disabledInput": {
+    "title": "Disabled Input",
+    "description": "Sometimes elements become enabled after some time they are rendered on the page. A test should be able to wait for an element to become enabled.",
+    "initialStatus": "---",
+    "disablingStatus": "Input Disabled...",
+    "enabledStatus": "Input Enabled...",
+    "typedValue": "Hello World",
+    "changedValueStatus": "Value changed to: Hello World",
+    "enableDelayMs": 5000
   }
 }

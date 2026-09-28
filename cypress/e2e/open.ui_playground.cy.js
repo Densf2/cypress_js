@@ -11,6 +11,11 @@ import {
 } from "./helpers/clear_input.helpers";
 import AlertsPage from "./pages/ui_playground/alerts.elements";
 import { stubAlert, stubConfirm, stubPrompt } from "./helpers/alerts.helpers";
+import DisabledInputPage from "./pages/ui_playground/disabled_input.elements";
+import {
+  statusShouldBe,
+  waitForInputToBeEnabled,
+} from "./helpers/disabled_input.helpers";
 import playgroundData from "../fixtures/ui_playground.json";
 
 describe("UI Test Automation Playground", () => {
@@ -293,5 +298,68 @@ describe("UI Test Automation Playground - Alerts", () => {
     stubAlert();
     alertsPage.promptButton().click();
     cy.get("@alertStub").should("have.been.calledWith", promptCancelFollowUpAlert);
+  });
+});
+
+describe("UI Test Automation Playground - Disabled Input", () => {
+  const disabledInputPage = new DisabledInputPage();
+  const {
+    title,
+    description,
+    initialStatus,
+    disablingStatus,
+    enabledStatus,
+    typedValue,
+    changedValueStatus,
+    enableDelayMs,
+  } = playgroundData.disabledInput;
+  const enableTimeout = enableDelayMs + 3000;
+
+  beforeEach(() => {
+    cy.visit("http://uitestingplayground.com/disabledinput");
+  });
+
+  it("page title and description are visible", () => {
+    cy.url().should("include", "/disabledinput");
+    disabledInputPage.pageTitle().should("be.visible").and("have.text", title);
+    disabledInputPage
+      .pageDescription()
+      .should("be.visible")
+      .and("have.text", description);
+  });
+
+  it("input field and enable button are enabled before the button is clicked", () => {
+    disabledInputPage.inputField().should("be.visible").and("be.enabled");
+    disabledInputPage.enableButton().should("be.visible").and("be.enabled");
+    statusShouldBe(initialStatus);
+  });
+
+  it("clicking the enable button disables the input immediately and updates the status", () => {
+    disabledInputPage.enableButton().click();
+    disabledInputPage.inputField().should("be.disabled");
+    statusShouldBe(disablingStatus);
+  });
+
+  it("input field becomes enabled again after the delay and status updates accordingly", () => {
+    disabledInputPage.enableButton().click();
+    disabledInputPage.inputField().should("be.disabled");
+    disabledInputPage
+      .inputField({ timeout: enableTimeout })
+      .should("be.enabled");
+    statusShouldBe(enabledStatus);
+  });
+
+  it("typing into the input after it becomes enabled keeps the entered value", () => {
+    disabledInputPage.enableButton().click();
+    waitForInputToBeEnabled(enableTimeout);
+    disabledInputPage.inputField().type(typedValue);
+    disabledInputPage.inputField().should("have.value", typedValue);
+  });
+
+  it("committing a value change updates the status text with the new value", () => {
+    disabledInputPage.enableButton().click();
+    waitForInputToBeEnabled(enableTimeout);
+    disabledInputPage.inputField().type(typedValue).blur();
+    statusShouldBe(changedValueStatus);
   });
 });
