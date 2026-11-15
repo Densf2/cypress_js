@@ -2,7 +2,7 @@
 /// <reference types="cypress" />
 
 //test data
-const url = "https://jpetstore.aspectran.com";
+const url = "https://jpetstore.aspectran.com/";
 const describeIfEnabled = Cypress.expose("SKIP_JPETSTORE")
   ? describe.skip
   : describe;
@@ -73,8 +73,8 @@ describeIfEnabled("JPetStore E-Commerce Application", () => {
     });
 
     it("return to main menu from category page", () => {
-      cy.contains("a", "Fish").click();
-      cy.contains("a", "Return to Main Menu").click();
+      cy.visit(`${url}categories/BIRDS`);
+      cy.contains("a", "JPetStore Demo").click({ force: true });
       cy.url().should("eq", url);
     });
   });
@@ -85,9 +85,8 @@ describeIfEnabled("JPetStore E-Commerce Application", () => {
     });
 
     it("display product list in category", () => {
-      cy.get("table").should("be.visible");
-      cy.contains("td", "FI-SW-01").should("be.visible");
-      cy.contains("td", "Angelfish").should("be.visible");
+      cy.get("div.product-grid").should("be.visible");
+      cy.contains("h3 a", "Angelfish").should("be.visible");
     });
 
     it("click on a product to view details", () => {
