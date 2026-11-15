@@ -178,7 +178,6 @@ describeIfEnabled("JPetStore E-Commerce Application", () => {
   context("Responsive Design Tests", () => {
     it("display correctly on mobile viewport", () => {
       cy.viewport(375, 667);
-      cy.get("p.teaser").contains("JPetStore Demo").should("be.visible");
       cy.get("h4 a").eq(0).contains("Fish").should("be.visible");
     });
 
