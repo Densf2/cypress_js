@@ -2,7 +2,7 @@
 /// <reference types="cypress" />
 
 //test data
-const url = "https://jpetstore.aspectran.com/";
+const url = "https://jpetstore.aspectran.com";
 const describeIfEnabled = Cypress.expose("SKIP_JPETSTORE")
   ? describe.skip
   : describe;
