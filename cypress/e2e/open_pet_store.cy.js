@@ -90,7 +90,7 @@ describeIfEnabled("JPetStore E-Commerce Application", () => {
     });
 
     it("click on a product to view details", () => {
-      cy.contains("a", "FI-SW-01").click();
+      cy.get('a[href="/products/FI-SW-01"]').click();
       cy.url().should("include", "/products/FI-SW-01");
     });
   });
@@ -125,20 +125,20 @@ describeIfEnabled("JPetStore E-Commerce Application", () => {
       cy.wait(1000);
       cy.url().should("not.include", "/account/signonForm");
       cy.url().should("eq", url);
-      cy.get("a#dropdownMenuButton").click({ force: true });
+      cy.get("button#dropdownMenuButton").click({ force: true });
       cy.get(
         'ul.dropdown-menu[aria-labelledby="dropdownMenuButton"] a.dropdown-item',
       )
-        .eq(1)
+        .eq(2)
         .contains("Sign Out");
       cy.get("i.bi-person-circle").eq(1).should("be.visible");
-      cy.get("div.pb-2").contains(" Welcome ");
+      cy.get("li.dropdown-header").contains(" Signed in as ");
       // sign out steps
-      cy.get("a#dropdownMenuButton").click({ force: true });
+      cy.get("button#dropdownMenuButton").click({ force: true });
       cy.get(
         'ul.dropdown-menu[aria-labelledby="dropdownMenuButton"] a.dropdown-item',
       )
-        .eq(1)
+        .eq(2)
         .contains("Sign Out")
         .click({ force: true });
       cy.contains("a", "Sign In").should("be.visible");
