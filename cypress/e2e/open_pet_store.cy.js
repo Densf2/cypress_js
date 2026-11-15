@@ -132,7 +132,7 @@ describeIfEnabled("JPetStore E-Commerce Application", () => {
         .eq(2)
         .contains("Sign Out");
       cy.get("i.bi-person-circle").eq(1).should("be.visible");
-      cy.get("li.dropdown-header").contains(" Signed in as ");
+      cy.get("li.dropdown-header").contains("Signed in as ");
       // sign out steps
       cy.get("button#dropdownMenuButton").click({ force: true });
       cy.get(
