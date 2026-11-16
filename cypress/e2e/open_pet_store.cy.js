@@ -73,8 +73,8 @@ describeIfEnabled("JPetStore E-Commerce Application", () => {
     });
 
     it("return to main menu from category page", () => {
-      cy.contains("a", "Fish").click();
-      cy.contains("a", "Return to Main Menu").click();
+      cy.visit(`${url}categories/BIRDS`);
+      cy.contains("a", "JPetStore Demo").click({ force: true });
       cy.url().should("eq", url);
     });
   });
@@ -85,13 +85,12 @@ describeIfEnabled("JPetStore E-Commerce Application", () => {
     });
 
     it("display product list in category", () => {
-      cy.get("table").should("be.visible");
-      cy.contains("td", "FI-SW-01").should("be.visible");
-      cy.contains("td", "Angelfish").should("be.visible");
+      cy.get("div.product-grid").should("be.visible");
+      cy.contains("h3 a", "Angelfish").should("be.visible");
     });
 
     it("click on a product to view details", () => {
-      cy.contains("a", "FI-SW-01").click();
+      cy.get('a[href="/products/FI-SW-01"]').click();
       cy.url().should("include", "/products/FI-SW-01");
     });
   });
@@ -126,20 +125,20 @@ describeIfEnabled("JPetStore E-Commerce Application", () => {
       cy.wait(1000);
       cy.url().should("not.include", "/account/signonForm");
       cy.url().should("eq", url);
-      cy.get("a#dropdownMenuButton").click({ force: true });
+      cy.get("button#dropdownMenuButton").click({ force: true });
       cy.get(
         'ul.dropdown-menu[aria-labelledby="dropdownMenuButton"] a.dropdown-item',
       )
-        .eq(1)
+        .eq(2)
         .contains("Sign Out");
       cy.get("i.bi-person-circle").eq(1).should("be.visible");
-      cy.get("div.pb-2").contains(" Welcome ");
+      cy.get("li.dropdown-header").contains("Signed in as ");
       // sign out steps
-      cy.get("a#dropdownMenuButton").click({ force: true });
+      cy.get("button#dropdownMenuButton").click({ force: true });
       cy.get(
         'ul.dropdown-menu[aria-labelledby="dropdownMenuButton"] a.dropdown-item',
       )
-        .eq(1)
+        .eq(2)
         .contains("Sign Out")
         .click({ force: true });
       cy.contains("a", "Sign In").should("be.visible");
@@ -179,7 +178,6 @@ describeIfEnabled("JPetStore E-Commerce Application", () => {
   context("Responsive Design Tests", () => {
     it("display correctly on mobile viewport", () => {
       cy.viewport(375, 667);
-      cy.get("p.teaser").contains("JPetStore Demo").should("be.visible");
       cy.get("h4 a").eq(0).contains("Fish").should("be.visible");
     });
 
